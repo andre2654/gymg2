@@ -1,0 +1,23 @@
+{
+  "editor.formatOnPaste": false,
+  "editor.formatOnType": false,
+  "editor.formatOnSave": true,
+  "scss.lint.unknownAtRules": "ignore",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "eslint.format.enable": true,
+  "prettier.useEditorConfig": false,
+  "editor.minimap.maxColumn": 80,
+  "editor.minimap.renderCharacters": false,
+  "editor.wordWrap": "wordWrapColumn",
+  "editor.tabSize": 4,
+
+  "[python]": {
+    "diffEditor.ignoreTrimWhitespace": false,
+    "gitlens.codeLens.symbolScopes": [
+      "!Module"
+    ],
+    "editor.formatOnType": true,
+    "editor.wordBasedSuggestions": "allDocuments",
+    "editor.defaultFormatter": "charliermarsh.ruff"
+  }
+}
