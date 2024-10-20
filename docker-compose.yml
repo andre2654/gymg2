@@ -10,9 +10,9 @@ services:
     volumes:
       - ./backend:/app
     depends_on:
-      - profileauth_db
+      - database_profile
 
-  profileauth_db:
+  database_profile:
     image: postgres:17.0
     restart: always
     environment:
@@ -24,4 +24,4 @@ services:
     ports:
       - '5432:${POSTGRES_PORT}'
     volumes:
-      - ./profileauth_db:/var/lib/postgresql/data
+      - ./databases/profile:/var/lib/postgresql/data
