@@ -12,6 +12,42 @@ services:
     depends_on:
       - database_profile
 
+  queue:
+    build:
+      context: ./queue
+      dockerfile: Dockerfile
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+
+  notification:
+    build:
+      context: ./microsservices/notification
+      dockerfile: Dockerfile
+    ports:
+      - '8001:8001'
+    volumes:
+      - ./microsservices/notification:/app
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+
+  rabbitmq:
+    image: rabbitmq:4-management
+    restart: always
+    ports:
+      - '5672:5672'
+      - '15672:15672'
+    healthcheck:
+      test: rabbitmq-diagnostics check_port_connectivity
+      interval: 10s
+      timeout: 20s
+      retries: 5
+    volumes:
+      - ./rabbitmq:/var/lib/rabbitmq
+    depends_on:
+      - database_profile
+
   database_profile:
     image: postgres:17.0
     restart: always
